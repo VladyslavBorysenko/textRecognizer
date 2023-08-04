@@ -8,26 +8,19 @@
 import Foundation
 import AVFoundation
 import UIKit
+import SwiftUI
 
-protocol CameraServiceDelegate: AnyObject {
-    func setPhoto(image: UIImage)
-}
-
-class CameraService: NSObject {
+class CameraService: NSObject, ObservableObject {
     private var captureDevice: AVCaptureDevice?
-    private var backCamera: AVCaptureDevice?
-    private var frontCamera: AVCaptureDevice?
+    @Published private var backCamera: AVCaptureDevice?
+    @Published private var frontCamera: AVCaptureDevice?
     
-    private var backInput: AVCaptureInput!
-    private var frontInput: AVCaptureInput!
+    private var backInput: AVCaptureInput? = nil
     private let cameraQueue = DispatchQueue(label: "com.capturing.model")
     
-    private var backCameraOn = true
     
-    weak var delegate: CameraServiceDelegate?
-    
-    let captureSession = AVCaptureSession()
-    let photoOutput = AVCapturePhotoOutput()
+    @Published var captureSession = AVCaptureSession()
+    @Published var photoOutput = AVCapturePhotoOutput()
     
     override init() {
         super.init()
@@ -36,7 +29,7 @@ class CameraService: NSObject {
     
     private func currentDevice() -> AVCaptureDevice? {
         let discoverySession = AVCaptureDevice.DiscoverySession(
-            deviceTypes: [.builtInDualCamera],
+            deviceTypes: [.builtInDualCamera, .builtInDualWideCamera, .builtInWideAngleCamera],
             mediaType: .video,
             position: .back
         )
@@ -64,29 +57,54 @@ class CameraService: NSObject {
     }
     
     private func setupInputs() {
+        checkPermissions()
         backCamera = currentDevice()
 
         guard let backCamera = backCamera else { return }
         
         do {
             backInput = try AVCaptureDeviceInput(device: backCamera)
+            guard let backInput = backInput else { return }
             guard captureSession.canAddInput(backInput) else { return }
         } catch {
             fatalError("back camera didn't work")
         }
         
         captureDevice = backCamera
-        
+        guard let backInput = backInput else { fatalError("Back input not found") }
         captureSession.addInput(backInput)
     }
     
     private func setupOutput() {
         guard captureSession.canAddOutput(photoOutput) else { return }
         
-        photoOutput.maxPhotoDimensions = CMVideoDimensions()
+        photoOutput.isHighResolutionCaptureEnabled = true
         photoOutput.maxPhotoQualityPrioritization = .balanced
         
         captureSession.addOutput(photoOutput)
+    }
+    
+    private func checkPermissions() {
+            let cameraAuthStatus =  AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
+            switch cameraAuthStatus {
+            case .authorized:
+                return
+            case .denied:
+                abort()
+            case .notDetermined:
+                AVCaptureDevice.requestAccess(
+                    for: AVMediaType.video,
+                    completionHandler:
+                                                { authorized in
+                    if(!authorized){
+                        abort()
+                    }
+                })
+            case .restricted:
+                abort()
+            @unknown default:
+                fatalError()
+            }
     }
 }
 
@@ -96,15 +114,10 @@ extension CameraService: AVCapturePhotoCaptureDelegate {
             print("Fail to capture photo: \(String(describing: error))")
             return
         }
-        guard let imageData = photo.fileDataRepresentation() else {
-            return
-        }
-        guard let image = UIImage(data: imageData) else {
-            return
-        }
+        guard let imageData = photo.fileDataRepresentation() else { return }
+        guard let image = UIImage(data: imageData) else { return }
         
-        DispatchQueue.main.async {
-            self.delegate?.setPhoto(image: image)
+        DispatchQueue.main.async { [weak self] in
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
         }
     }

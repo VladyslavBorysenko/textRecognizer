@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8304E7CE2A7C387E0082383F /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304E7CD2A7C387E0082383F /* CameraPreview.swift */; };
 		835913822A7BE05D00CB4D9C /* TextRecognizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835913812A7BE05D00CB4D9C /* TextRecognizerApp.swift */; };
 		835913842A7BE05D00CB4D9C /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835913832A7BE05D00CB4D9C /* CameraView.swift */; };
 		835913862A7BE06000CB4D9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 835913852A7BE06000CB4D9C /* Assets.xcassets */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8304E7CC2A7C37A30082383F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8304E7CD2A7C387E0082383F /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
 		8359137E2A7BE05D00CB4D9C /* TextRecognizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextRecognizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		835913812A7BE05D00CB4D9C /* TextRecognizerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognizerApp.swift; sourceTree = "<group>"; };
 		835913832A7BE05D00CB4D9C /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
@@ -55,12 +58,14 @@
 		835913802A7BE05D00CB4D9C /* TextRecognizer */ = {
 			isa = PBXGroup;
 			children = (
+				8304E7CC2A7C37A30082383F /* Info.plist */,
 				835913812A7BE05D00CB4D9C /* TextRecognizerApp.swift */,
 				835913832A7BE05D00CB4D9C /* CameraView.swift */,
 				835913852A7BE06000CB4D9C /* Assets.xcassets */,
 				835913872A7BE06000CB4D9C /* Preview Content */,
 				8359138F2A7BE18300CB4D9C /* CameraService.swift */,
 				835913912A7BE32700CB4D9C /* PhotoModel.swift */,
+				8304E7CD2A7C387E0082383F /* CameraPreview.swift */,
 			);
 			path = TextRecognizer;
 			sourceTree = "<group>";
@@ -143,6 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8304E7CE2A7C387E0082383F /* CameraPreview.swift in Sources */,
 				835913842A7BE05D00CB4D9C /* CameraView.swift in Sources */,
 				835913822A7BE05D00CB4D9C /* TextRecognizerApp.swift in Sources */,
 				835913922A7BE32700CB4D9C /* PhotoModel.swift in Sources */,
@@ -278,6 +284,7 @@
 				DEVELOPMENT_TEAM = UYH8ZRUR9A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TextRecognizer/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -307,6 +314,7 @@
 				DEVELOPMENT_TEAM = UYH8ZRUR9A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TextRecognizer/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
