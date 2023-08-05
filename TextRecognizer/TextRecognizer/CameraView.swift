@@ -14,6 +14,8 @@ private enum Constants {
     static let smallCircleSize: CGFloat = 45
     static let hudBackgroundOpacity: Double = 0.7
     static let cirlceLineWidth: CGFloat = 3
+    static let cornerRadius: CGFloat = 10
+    static let bannerTopPadding: CGFloat = 50
 }
 
 struct CameraView: View {
@@ -23,6 +25,10 @@ struct CameraView: View {
             CameraPreviewHolder(cameraService: cameraService)
                 .ignoresSafeArea()
             VStack {
+                InfoBanner(title: "Take a picture of your question")
+                    .background(Color.black.opacity(Constants.hudBackgroundOpacity))
+                    .cornerRadius(Constants.cornerRadius)
+                    .padding(.top, Constants.bannerTopPadding)
                 Spacer()
                 HStack {
                     Image(systemName: "bolt.fill")
@@ -47,9 +53,19 @@ struct CameraView: View {
                     
                 }
                 .padding()
-                .background(Color.gray.opacity(Constants.hudBackgroundOpacity))
+                .background(Color.black.opacity(Constants.hudBackgroundOpacity))
             }
         }
+    }
+}
+
+struct InfoBanner: View {
+    let title: String
+    var body: some View {
+        Text(title)
+            .foregroundColor(.white)
+            .padding(.horizontal, 40)
+            .padding(.vertical, 10)
     }
 }
 

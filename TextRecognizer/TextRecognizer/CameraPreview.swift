@@ -23,8 +23,6 @@ struct CameraPreviewHolder: UIViewRepresentable {
         previewLayer.videoGravity = .resizeAspectFill
         view.layer.addSublayer(previewLayer)
         view.backgroundColor = .brown
-        
-        cameraService.captureSession.startRunning()
         return view
         
     }
