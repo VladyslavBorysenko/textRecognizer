@@ -13,6 +13,9 @@
 		8304E7E52A8145020082383F /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304E7E42A8145020082383F /* ImageUploader.swift */; };
 		8304E7E72A8145500082383F /* ResponseResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304E7E62A8145500082383F /* ResponseResult.swift */; };
 		8304E7E92A81457B0082383F /* URLRequest + Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304E7E82A81457B0082383F /* URLRequest + Init.swift */; };
+		8304E7EB2A8196510082383F /* PhotoHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304E7EA2A8196510082383F /* PhotoHud.swift */; };
+		8304E7EE2A8196CF0082383F /* TextScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304E7ED2A8196CF0082383F /* TextScannerView.swift */; };
+		8304E7F02A8196F90082383F /* CropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304E7EF2A8196F90082383F /* CropView.swift */; };
 		835913822A7BE05D00CB4D9C /* TextRecognizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835913812A7BE05D00CB4D9C /* TextRecognizerApp.swift */; };
 		835913842A7BE05D00CB4D9C /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835913832A7BE05D00CB4D9C /* CameraView.swift */; };
 		835913862A7BE06000CB4D9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 835913852A7BE06000CB4D9C /* Assets.xcassets */; };
@@ -28,6 +31,9 @@
 		8304E7E42A8145020082383F /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		8304E7E62A8145500082383F /* ResponseResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseResult.swift; sourceTree = "<group>"; };
 		8304E7E82A81457B0082383F /* URLRequest + Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest + Init.swift"; sourceTree = "<group>"; };
+		8304E7EA2A8196510082383F /* PhotoHud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoHud.swift; sourceTree = "<group>"; };
+		8304E7ED2A8196CF0082383F /* TextScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextScannerView.swift; sourceTree = "<group>"; };
+		8304E7EF2A8196F90082383F /* CropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropView.swift; sourceTree = "<group>"; };
 		8359137E2A7BE05D00CB4D9C /* TextRecognizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextRecognizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		835913812A7BE05D00CB4D9C /* TextRecognizerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognizerApp.swift; sourceTree = "<group>"; };
 		835913832A7BE05D00CB4D9C /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
@@ -59,6 +65,18 @@
 			path = NetworkLayer;
 			sourceTree = "<group>";
 		};
+		8304E7EC2A8196900082383F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8304E7CD2A7C387E0082383F /* CameraPreview.swift */,
+				8304E7EA2A8196510082383F /* PhotoHud.swift */,
+				835913832A7BE05D00CB4D9C /* CameraView.swift */,
+				8304E7ED2A8196CF0082383F /* TextScannerView.swift */,
+				8304E7EF2A8196F90082383F /* CropView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		835913752A7BE05D00CB4D9C = {
 			isa = PBXGroup;
 			children = (
@@ -78,13 +96,12 @@
 		835913802A7BE05D00CB4D9C /* TextRecognizer */ = {
 			isa = PBXGroup;
 			children = (
+				8304E7EC2A8196900082383F /* Views */,
 				8304E7CC2A7C37A30082383F /* Info.plist */,
 				835913812A7BE05D00CB4D9C /* TextRecognizerApp.swift */,
-				835913832A7BE05D00CB4D9C /* CameraView.swift */,
 				835913852A7BE06000CB4D9C /* Assets.xcassets */,
 				835913872A7BE06000CB4D9C /* Preview Content */,
 				8359138F2A7BE18300CB4D9C /* CameraService.swift */,
-				8304E7CD2A7C387E0082383F /* CameraPreview.swift */,
 				8304E7D52A8117E70082383F /* NetworkLayer */,
 			);
 			path = TextRecognizer;
@@ -168,6 +185,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8304E7EB2A8196510082383F /* PhotoHud.swift in Sources */,
 				8304E7CE2A7C387E0082383F /* CameraPreview.swift in Sources */,
 				835913842A7BE05D00CB4D9C /* CameraView.swift in Sources */,
 				8304E7E92A81457B0082383F /* URLRequest + Init.swift in Sources */,
@@ -175,8 +193,10 @@
 				8304E7E72A8145500082383F /* ResponseResult.swift in Sources */,
 				8304E7E12A81449A0082383F /* AnyError.swift in Sources */,
 				8304E7E52A8145020082383F /* ImageUploader.swift in Sources */,
+				8304E7F02A8196F90082383F /* CropView.swift in Sources */,
 				8304E7E32A8144B50082383F /* Data+MIMEType.swift in Sources */,
 				835913902A7BE18300CB4D9C /* CameraService.swift in Sources */,
+				8304E7EE2A8196CF0082383F /* TextScannerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

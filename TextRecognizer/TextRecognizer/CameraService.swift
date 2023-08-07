@@ -22,6 +22,7 @@ class CameraService: NSObject, ObservableObject {
     @Published var photoOutput = AVCapturePhotoOutput()
     @Published var capturedPhoto: UIImage? = UIImage()
     
+    
     override init() {
         super.init()
         setupAndStartCaptureSession()
@@ -143,7 +144,7 @@ class CameraService: NSObject, ObservableObject {
         guard let cutImageRef: CGImage = inputImage.cgImage?.cropping(to:cropZone) else { return }
 
         // Return image to UIImage
-        capturedPhoto = UIImage(cgImage: cutImageRef)
+        capturedPhoto? = UIImage(cgImage: cutImageRef).flattened()
 
     }
 }
@@ -170,5 +171,14 @@ extension CameraService: AVCapturePhotoCaptureDelegate {
             }
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
         }
+    }
+}
+
+extension UIImage {
+    func flattened(isOpaque: Bool = true) -> UIImage {
+        if imageOrientation == .up { return self }
+        let format = imageRendererFormat
+        format.opaque = isOpaque
+        return UIGraphicsImageRenderer(size: size, format: format).image { _ in draw(at: .zero) }
     }
 }
