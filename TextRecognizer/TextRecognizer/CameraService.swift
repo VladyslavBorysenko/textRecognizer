@@ -20,7 +20,7 @@ class CameraService: NSObject, ObservableObject {
     
     @Published var captureSession = AVCaptureSession()
     @Published var photoOutput = AVCapturePhotoOutput()
-    @Published var capturedPhoto: UIImage = UIImage()
+    @Published var capturedPhoto: UIImage? = UIImage()
     
     override init() {
         super.init()
@@ -82,6 +82,13 @@ class CameraService: NSObject, ObservableObject {
         }
         
         captureDevice = backCamera
+        do {
+            defer { captureDevice?.unlockForConfiguration() }
+            try captureDevice?.lockForConfiguration()
+            captureDevice?.videoZoomFactor = 2.0
+        } catch {
+            print(error.localizedDescription)
+        }
         guard let backInput = backInput else { fatalError("Back input not found") }
         captureSession.addInput(backInput)
     }
@@ -117,6 +124,14 @@ class CameraService: NSObject, ObservableObject {
                 fatalError()
             }
     }
+    
+    func cropImage(toRect: CGRect) {
+        // Cropping is available trhough CGGraphics
+        guard let image = capturedPhoto else { return }
+        let cgImage: CGImage? = image.cgImage
+        guard let croppedCGImage = cgImage?.cropping(to: toRect) else { return }
+        capturedPhoto = UIImage(cgImage: croppedCGImage)
+    }
 }
 
 extension CameraService: AVCapturePhotoCaptureDelegate {
@@ -130,6 +145,15 @@ extension CameraService: AVCapturePhotoCaptureDelegate {
         
         DispatchQueue.main.async { [weak self] in
             self?.capturedPhoto = image
+            let request = ImageUploader(uploadImage: image)
+            request.uploadImage { (result) in
+                switch result {
+                case .success(let value):
+                    print(value)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
         }
     }

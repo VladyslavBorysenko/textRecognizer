@@ -8,24 +8,34 @@
 
 /* Begin PBXBuildFile section */
 		8304E7CE2A7C387E0082383F /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304E7CD2A7C387E0082383F /* CameraPreview.swift */; };
+		8304E7DF2A8140500082383F /* OCRModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304E7DE2A8140500082383F /* OCRModel.swift */; };
+		8304E7E12A81449A0082383F /* AnyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304E7E02A81449A0082383F /* AnyError.swift */; };
+		8304E7E32A8144B50082383F /* Data+MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304E7E22A8144B50082383F /* Data+MIMEType.swift */; };
+		8304E7E52A8145020082383F /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304E7E42A8145020082383F /* ImageUploader.swift */; };
+		8304E7E72A8145500082383F /* ResponseResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304E7E62A8145500082383F /* ResponseResult.swift */; };
+		8304E7E92A81457B0082383F /* URLRequest + Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304E7E82A81457B0082383F /* URLRequest + Init.swift */; };
 		835913822A7BE05D00CB4D9C /* TextRecognizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835913812A7BE05D00CB4D9C /* TextRecognizerApp.swift */; };
 		835913842A7BE05D00CB4D9C /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835913832A7BE05D00CB4D9C /* CameraView.swift */; };
 		835913862A7BE06000CB4D9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 835913852A7BE06000CB4D9C /* Assets.xcassets */; };
 		835913892A7BE06000CB4D9C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 835913882A7BE06000CB4D9C /* Preview Assets.xcassets */; };
 		835913902A7BE18300CB4D9C /* CameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8359138F2A7BE18300CB4D9C /* CameraService.swift */; };
-		835913922A7BE32700CB4D9C /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835913912A7BE32700CB4D9C /* PhotoModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8304E7CC2A7C37A30082383F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8304E7CD2A7C387E0082383F /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
+		8304E7DE2A8140500082383F /* OCRModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRModel.swift; sourceTree = "<group>"; };
+		8304E7E02A81449A0082383F /* AnyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyError.swift; sourceTree = "<group>"; };
+		8304E7E22A8144B50082383F /* Data+MIMEType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+MIMEType.swift"; sourceTree = "<group>"; };
+		8304E7E42A8145020082383F /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
+		8304E7E62A8145500082383F /* ResponseResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseResult.swift; sourceTree = "<group>"; };
+		8304E7E82A81457B0082383F /* URLRequest + Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest + Init.swift"; sourceTree = "<group>"; };
 		8359137E2A7BE05D00CB4D9C /* TextRecognizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextRecognizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		835913812A7BE05D00CB4D9C /* TextRecognizerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognizerApp.swift; sourceTree = "<group>"; };
 		835913832A7BE05D00CB4D9C /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		835913852A7BE06000CB4D9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		835913882A7BE06000CB4D9C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8359138F2A7BE18300CB4D9C /* CameraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
-		835913912A7BE32700CB4D9C /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +49,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8304E7D52A8117E70082383F /* NetworkLayer */ = {
+			isa = PBXGroup;
+			children = (
+				8304E7DE2A8140500082383F /* OCRModel.swift */,
+				8304E7E02A81449A0082383F /* AnyError.swift */,
+				8304E7E22A8144B50082383F /* Data+MIMEType.swift */,
+				8304E7E42A8145020082383F /* ImageUploader.swift */,
+				8304E7E62A8145500082383F /* ResponseResult.swift */,
+				8304E7E82A81457B0082383F /* URLRequest + Init.swift */,
+			);
+			path = NetworkLayer;
+			sourceTree = "<group>";
+		};
 		835913752A7BE05D00CB4D9C = {
 			isa = PBXGroup;
 			children = (
@@ -64,8 +87,8 @@
 				835913852A7BE06000CB4D9C /* Assets.xcassets */,
 				835913872A7BE06000CB4D9C /* Preview Content */,
 				8359138F2A7BE18300CB4D9C /* CameraService.swift */,
-				835913912A7BE32700CB4D9C /* PhotoModel.swift */,
 				8304E7CD2A7C387E0082383F /* CameraPreview.swift */,
+				8304E7D52A8117E70082383F /* NetworkLayer */,
 			);
 			path = TextRecognizer;
 			sourceTree = "<group>";
@@ -150,8 +173,13 @@
 			files = (
 				8304E7CE2A7C387E0082383F /* CameraPreview.swift in Sources */,
 				835913842A7BE05D00CB4D9C /* CameraView.swift in Sources */,
+				8304E7E92A81457B0082383F /* URLRequest + Init.swift in Sources */,
 				835913822A7BE05D00CB4D9C /* TextRecognizerApp.swift in Sources */,
-				835913922A7BE32700CB4D9C /* PhotoModel.swift in Sources */,
+				8304E7E72A8145500082383F /* ResponseResult.swift in Sources */,
+				8304E7E12A81449A0082383F /* AnyError.swift in Sources */,
+				8304E7DF2A8140500082383F /* OCRModel.swift in Sources */,
+				8304E7E52A8145020082383F /* ImageUploader.swift in Sources */,
+				8304E7E32A8144B50082383F /* Data+MIMEType.swift in Sources */,
 				835913902A7BE18300CB4D9C /* CameraService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

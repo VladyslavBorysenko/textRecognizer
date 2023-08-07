@@ -26,10 +26,12 @@ struct CameraView: View {
     var body: some View {
         if isPhotoTaken {
             ZStack {
-                Image(uiImage: cameraService.capturedPhoto)
-                    .resizable()
+                Image(uiImage: cameraService.capturedPhoto ?? UIImage())
+                    .resizable(resizingMode: .stretch)
                     .ignoresSafeArea()
+                    .scaledToFit()
                 TextScannerHud()
+                    .environmentObject(cameraService)
                 CropView()
                     .offset(cropViewState)
                     .gesture(
@@ -106,6 +108,8 @@ struct PhotoHud: View {
 }
 
 struct TextScannerHud: View {
+    @EnvironmentObject var cameraService: CameraService
+    
     var body: some View {
         VStack {
             InfoBanner(title: "Crop by adjusting the corner")
@@ -125,7 +129,9 @@ struct TextScannerHud: View {
                 
                 Spacer()
                 
-                Button(action: {}, label: {
+                Button(action: {
+                    cameraService.cropImage(toRect: CGRect(x: <#T##CGFloat#>, y: <#T##CGFloat#>, width: <#T##CGFloat#>, height: <#T##CGFloat#>))
+                }, label: {
                     Text("Confirm")
                         .padding(.horizontal, 50)
                         .padding(.vertical, 15)
@@ -141,8 +147,8 @@ struct TextScannerHud: View {
 
 struct CropView: View {
     // Initialise to a size proportional to the screen dimensions.
-    @State private var width = UIScreen.main.bounds.size.width / 1.5
-    @State private var height = UIScreen.main.bounds.size.height / 7
+    @State private(set) var width: CGFloat = UIScreen.main.bounds.size.width / 1.5
+    @State private(set) var height: CGFloat = UIScreen.main.bounds.size.height / 7
     
     var body: some View {
         // This is the view that's going to be resized.
@@ -151,19 +157,20 @@ struct CropView: View {
                 .frame(width: width, height: height)
             // This is the "drag handle" positioned on the lower-left corner of this stack.
             Text("")
-                .frame(width: 30, height: 30)
-                .background(.red)
+                .frame(width: 20, height: 20)
+                .contentShape(Rectangle())
                 .gesture(
                     DragGesture()
                         .onChanged { value in
                             // Enforce minimum dimensions.
+                            guard width + value.translation.width < UIScreen.main.bounds.size.width && height + value.translation.height < UIScreen.main.bounds.size.height else { return }
                             width = max(100, width + value.translation.width)
-                            height = max(100, height + value.translation.height)
+                            height = max(50, height + value.translation.height)
                         }
                 )
         }
+        .contentShape(Rectangle())
         .frame(width: width, height: height, alignment: .center)
-        .background(.black)
         .overlay {
             Rectangle()
                 .foregroundColor(.white.opacity(0))
