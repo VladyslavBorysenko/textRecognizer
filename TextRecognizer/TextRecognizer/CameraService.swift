@@ -125,12 +125,26 @@ class CameraService: NSObject, ObservableObject {
             }
     }
     
-    func cropImage(toRect: CGRect) {
+    func cropImage(toRect cropRect: CGRect, viewWidth: CGFloat, viewHeight: CGFloat) {
         // Cropping is available trhough CGGraphics
-        guard let image = capturedPhoto else { return }
-        let cgImage: CGImage? = image.cgImage
-        guard let croppedCGImage = cgImage?.cropping(to: toRect) else { return }
-        capturedPhoto = UIImage(cgImage: croppedCGImage)
+        guard let inputImage = capturedPhoto else { return }
+        let imageViewScale = max(inputImage.size.width / viewWidth,
+                                 inputImage.size.height / viewHeight)
+
+
+        // Scale cropRect to handle images larger than shown-on-screen size
+        let cropZone = CGRect(x:cropRect.origin.x * imageViewScale,
+                              y:cropRect.origin.y * imageViewScale,
+                              width:cropRect.size.width * imageViewScale,
+                              height:cropRect.size.height * imageViewScale)
+
+
+        // Perform cropping in Core Graphics
+        guard let cutImageRef: CGImage = inputImage.cgImage?.cropping(to:cropZone) else { return }
+
+        // Return image to UIImage
+        capturedPhoto = UIImage(cgImage: cutImageRef)
+
     }
 }
 

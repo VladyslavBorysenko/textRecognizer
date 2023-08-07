@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8304E7CE2A7C387E0082383F /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304E7CD2A7C387E0082383F /* CameraPreview.swift */; };
-		8304E7DF2A8140500082383F /* OCRModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304E7DE2A8140500082383F /* OCRModel.swift */; };
 		8304E7E12A81449A0082383F /* AnyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304E7E02A81449A0082383F /* AnyError.swift */; };
 		8304E7E32A8144B50082383F /* Data+MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304E7E22A8144B50082383F /* Data+MIMEType.swift */; };
 		8304E7E52A8145020082383F /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304E7E42A8145020082383F /* ImageUploader.swift */; };
@@ -24,7 +23,6 @@
 /* Begin PBXFileReference section */
 		8304E7CC2A7C37A30082383F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8304E7CD2A7C387E0082383F /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
-		8304E7DE2A8140500082383F /* OCRModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRModel.swift; sourceTree = "<group>"; };
 		8304E7E02A81449A0082383F /* AnyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyError.swift; sourceTree = "<group>"; };
 		8304E7E22A8144B50082383F /* Data+MIMEType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+MIMEType.swift"; sourceTree = "<group>"; };
 		8304E7E42A8145020082383F /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
@@ -52,7 +50,6 @@
 		8304E7D52A8117E70082383F /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
-				8304E7DE2A8140500082383F /* OCRModel.swift */,
 				8304E7E02A81449A0082383F /* AnyError.swift */,
 				8304E7E22A8144B50082383F /* Data+MIMEType.swift */,
 				8304E7E42A8145020082383F /* ImageUploader.swift */,
@@ -177,7 +174,6 @@
 				835913822A7BE05D00CB4D9C /* TextRecognizerApp.swift in Sources */,
 				8304E7E72A8145500082383F /* ResponseResult.swift in Sources */,
 				8304E7E12A81449A0082383F /* AnyError.swift in Sources */,
-				8304E7DF2A8140500082383F /* OCRModel.swift in Sources */,
 				8304E7E52A8145020082383F /* ImageUploader.swift in Sources */,
 				8304E7E32A8144B50082383F /* Data+MIMEType.swift in Sources */,
 				835913902A7BE18300CB4D9C /* CameraService.swift in Sources */,
