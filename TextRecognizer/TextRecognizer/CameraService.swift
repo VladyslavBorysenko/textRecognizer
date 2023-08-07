@@ -18,9 +18,9 @@ class CameraService: NSObject, ObservableObject {
     private var backInput: AVCaptureInput? = nil
     private let cameraQueue = DispatchQueue(label: "com.capturing.model")
     
-    
     @Published var captureSession = AVCaptureSession()
     @Published var photoOutput = AVCapturePhotoOutput()
+    @Published var capturedPhoto: UIImage = UIImage()
     
     override init() {
         super.init()
@@ -38,6 +38,17 @@ class CameraService: NSObject, ObservableObject {
         
         return device
     }
+    
+    func takePhoto(completion: () -> () ) {
+         let photoSettings = AVCapturePhotoSettings()
+         photoSettings.isHighResolutionPhotoEnabled = true
+         //photoSettings.flashMode = topBar.isTorchOn ? .on : .off
+         photoOutput.capturePhoto(with: photoSettings, delegate: self)
+
+         let generator = UIImpactFeedbackGenerator(style: .medium)
+         generator.impactOccurred()
+         completion()
+     }
     
     private func setupAndStartCaptureSession() {
         cameraQueue.async { [weak self] in
@@ -84,6 +95,7 @@ class CameraService: NSObject, ObservableObject {
         captureSession.addOutput(photoOutput)
     }
     
+    
     private func checkPermissions() {
             let cameraAuthStatus =  AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
             switch cameraAuthStatus {
@@ -94,8 +106,7 @@ class CameraService: NSObject, ObservableObject {
             case .notDetermined:
                 AVCaptureDevice.requestAccess(
                     for: AVMediaType.video,
-                    completionHandler:
-                                                { authorized in
+                    completionHandler: { authorized in
                     if(!authorized){
                         abort()
                     }
@@ -118,6 +129,7 @@ extension CameraService: AVCapturePhotoCaptureDelegate {
         guard let image = UIImage(data: imageData) else { return }
         
         DispatchQueue.main.async { [weak self] in
+            self?.capturedPhoto = image
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
         }
     }
